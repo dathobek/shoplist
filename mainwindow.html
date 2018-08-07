@@ -7,7 +7,11 @@
     
 </head>
 <body>
-    <h1>Shopping List</h1>
+    <nav>
+        <div class="nav-wrapper">
+            <a class="brand-logo center">Shopping List</a>
+        </div>
+    </nav>
     <ul></ul>
 
  <script>
@@ -17,7 +21,9 @@
 
     // Add item
     ipcRenderer.on('item:add',function(e,item){
+        ul.className = 'collection';
         const li = document.createElement('li');
+        li.className = 'collection-item';
         const itemText = document.createTextNode(item);
         li.appendChild(itemText);
         ul.appendChild(li);
