@@ -44,6 +44,10 @@ function createWindow(){
         slashes: true
     }));
     // addWindow.setMenu(null);
+    //Gabbage collection
+    addWindow.on('close',function(){
+        addWindow = null;
+    })
 }
 
 // Create a menu template
@@ -63,6 +67,7 @@ const mainMenuTemplate = [
            },
            {
                label: 'Quit',
+               accelerator: process.platform == 'darwin' ? 'Command+Q' : 'Ctrl+Q',
                click(){
                    app.quit();
                }
@@ -70,3 +75,8 @@ const mainMenuTemplate = [
        ]
    }
 ];
+
+// Check if running on Mac,then add empty object to menu
+if(process.platform == 'darwin'){
+  mainMenuTemplate.unshift({});
+}
