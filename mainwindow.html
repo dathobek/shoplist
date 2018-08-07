@@ -32,6 +32,7 @@
     // Clear Item
     ipcRenderer.on('item:clear',function(){
         ul.innerHTML = '';
+        ul.className = '';
     })
 
     // Remove Item
@@ -39,6 +40,9 @@
 
     function removeItem(e){
       e.target.remove();
+      if(ul.children.length == 0){
+       ul.className= '';
+      }
     }
 
  </script>
