@@ -3,6 +3,7 @@
 <head>
     
     <title>Shopping List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
     
 </head>
 <body>
@@ -14,12 +15,25 @@
     const { ipcRenderer } = electron;
     const ul = document.querySelector('ul');
 
+    // Add item
     ipcRenderer.on('item:add',function(e,item){
         const li = document.createElement('li');
         const itemText = document.createTextNode(item);
         li.appendChild(itemText);
         ul.appendChild(li);
     })
+
+    // Clear Item
+    ipcRenderer.on('item:clear',function(){
+        ul.innerHTML = '';
+    })
+
+    // Remove Item
+    ul.addEventListener('dblclick',removeItem);
+
+    function removeItem(e){
+      e.target.remove();
+    }
 
  </script>
 </body>
