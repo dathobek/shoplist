@@ -80,3 +80,26 @@ const mainMenuTemplate = [
 if(process.platform == 'darwin'){
   mainMenuTemplate.unshift({});
 }
+
+// Add developer Tools Item if not in production
+if(process.env.NODE_ENV !== 'production'){
+    mainMenuTemplate.push({
+        label: 'Developer Tools',
+        submenu: [
+            {
+                label: 'Toggle Dev Tools',
+                accelerator: process.platform == 'darwin' ? 'Command+I' : 'Ctrl+I',
+                click(item,focusedWindow){
+                    focusedWindow.toggleDevTools();
+
+                }
+            },
+            {
+                role: 'reload'
+            },
+            {
+               role: 'quit'  
+            }
+        ]
+    })
+}
